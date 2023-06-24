@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title>Plant Height and Subpopulation Prediction of Oryza Sativa using Machine Learning</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+		<link rel="icon" href="{{ url_for('static', filename='css/img.jpg') }}" type="image/x-icon">
+		<link rel = "stylesheet" href = "E:/ProjectWork/Agri-Genomics/Flask/static/css/index.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			$(document).ready(function() {
+			  	$(".clickable-row").click(function() {
+					window.open($(this).data("href"), '_blank');
+			  	});
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">	
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('makepredictions') }}">Make Predictions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('viewdata') }}">Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contact">Contact Details</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class = "container slide-up">
+			<h2>Home</h2>
+			<br>
+			<!--<p>
+				Welcome to the Home Page of our exciting project on "Genomic Prediction of Oryza Sativa Plant Height using Machine
+				Learning." In this project, we aim to revolutionize the field of agricultural genomics by harnessing the power of machine
+				learning algorithms to predict the plant height of Oryza Sativa, commonly known as rice. Plant height is a crucial trait 
+				that directly influences yield, stability, and overall productivity in rice cultivation. By accurately predicting plant 
+				height, we can provide valuable insights to farmers, breeders, and researchers to optimize crop management strategies and
+				enhance crop performance. Our project leverages cutting-edge machine learning techniques and genomic data to develop
+				robust predictive models. By analyzing the genetic makeup of Oryza Sativa and incorporating key genomic features such as
+				single nucleotide polymorphisms (SNPs), gene expression data, and other relevant markers, we aim to uncover the genetic
+				factors influencing plant height variations. Through this analysis, we can unlock valuable knowledge about the underlying
+				mechanisms controlling plant height, facilitating targeted breeding efforts and informed decision-making for crop
+				improvement. The potential impact of this project is vast. Accurate plant height prediction can enable breeders to
+				develop rice varieties with desired traits, such as enhanced lodging resistance, optimized resource utilization, and
+				improved adaptation to diverse environmental conditions. Moreover, farmers can optimize their crop management strategies,
+				including irrigation, fertilizer application, and pest control, based on predicted plant heights, leading to increased
+				efficiency, reduced costs, and higher crop yields. Our team of interdisciplinary experts combines expertise in genomics,
+				machine learning, and agriculture to drive innovation in this field. We are committed to conducting rigorous research,
+				utilizing state-of-the-art methodologies, and collaborating with stakeholders to ensure the practical applicability and
+				relevance of our findings. On this website, you will find updates on our research progress, access to publications and
+				resources, and insights into the fascinating world of genomic prediction in agriculture. We invite you to join us on this
+				journey as we explore the untapped potential of machine learning in predicting Oryza Sativa plant height, ultimately
+				contributing to sustainable and efficient rice production. Together, let us unlock the secrets hidden within the genome
+				of Oryza Sativa and pave the way for a future of precision agriculture and improved food security.
+			</p>-->
+			<p>
+				Welcome to our project on "Genomic Prediction of Oryza Sativa Plant Height using Machine Learning." We aim to
+				revolutionize agricultural genomics by using machine learning algorithms to predict rice plant height. By analyzing
+				genomic data and leveraging advanced techniques, we can provide valuable insights for optimizing crop management and
+				enhancing yield. Join us as we explore the potential of machine learning in improving rice production and food security.
+			</p>
+		</div>
+		<div style = "margin-top: 3%; margin-bottom: 10%;"class = "container slide-up">
+			<h2 id = "about">About Us</h2>
+			<br>
+			<!--<p>
+				We are a dedicated team of researchers and experts passionate about advancing agricultural
+				genomics through cutting-edge technologies and machine learning. Our mission is to unlock the potential of genomic
+				prediction to enhance crop productivity, with a particular focus on predicting the plant height of Oryza Sativa, also
+				known as rice. With a deep understanding of both genomics and machine learning, our interdisciplinary team brings together
+				expertise from diverse fields such as genetics, bioinformatics, data science, and agriculture. We are committed to pushing
+				the boundaries of scientific knowledge and leveraging the power of data-driven approaches to revolutionize the
+				agricultural industry. Through our project on Genomic Prediction of Oryza Sativa Plant Height using Machine Learning, we
+				strive to unravel the genetic factors influencing rice plant height variations. By analyzing the rich genomic data
+				available and applying state-of-the-art machine learning algorithms, we aim to develop accurate predictive models that
+				can assist farmers, breeders, and researchers in making informed decisions. Our vision extends beyond academic research.
+				We are driven by the desire to make a tangible impact on the field of agriculture and contribute to global food security.
+				By leveraging machine learning algorithms and genomic insights, we aspire to enable precision agriculture, optimize crop
+				management strategies, and enhance the efficiency and sustainability of rice cultivation. Collaboration lies at the heart
+				of our work. We actively engage with stakeholders, including farmers, breeders, and industry experts, to ensure our
+				research aligns with real-world challenges and delivers practical solutions. By fostering partnerships and sharing our
+				knowledge and findings, we aim to facilitate the adoption of genomic prediction in agriculture, benefiting the entire
+				community. We invite you to join us on this exciting journey towards unlocking the full potential of genomic prediction
+				in agriculture. Stay connected with us to receive updates on our research progress, access valuable resources, and be part
+				of the transformation in crop improvement and sustainable agriculture. Together, let's harness the power of genomics and
+				machine learning to shape the future of agriculture and contribute to a more resilient and food-secure world.
+			</p>-->
+			<p>
+				We are a dedicated team of researchers leveraging cutting-edge genomics and machine learning technologies to enhance
+				agricultural practices. Our project focuses on predicting the plant height of Oryza Sativa (rice) through genomic
+				analysis and advanced predictive models. With a mission to drive precision agriculture and improve crop productivity,
+				we collaborate with stakeholders and strive to make a tangible impact on global food security. Join us as we
+				revolutionize the field of agricultural genomics through innovation and collaboration.
+			</p>
+		</div>
+		<div class="footer">
+			<h1 id = "contact">Contact Details</h1>
+			<br>
+			<table class = "table table-dark table-striped table-hover">
+				<tbody>
+					<tr class = "clickable-row" data-href = "mailto:umangbasuthkar51@gmail.com">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-envelope" style = "color: white;"> umangbasuthkar51@gmail.com</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://www.linkedin.com/in/umang-basuthkar-10a240235/">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-linkedin" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://github.com/UmangBasuthkar">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-github" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>

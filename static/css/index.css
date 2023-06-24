@@ -1,0 +1,50 @@
+body{
+    background-image: url(bgimg.jpg);
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+    font-family: "Helvatica", sans-serif;
+    
+}
+.navbar .nav-item {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.navbar-nav .nav-link{
+    color: white;
+}
+.container{
+    margin-top: 4%;
+    margin-bottom: 5%;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+    background-color: white;
+}
+.footer {
+    position: relative;
+    width: 100%;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+    background-color: black;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+}
+.slide-up{
+	animation: slideup 1s linear forwards;
+}
+@keyframes slideup{
+    0%{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

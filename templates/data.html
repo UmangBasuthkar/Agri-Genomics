@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title>Plant Height and Subpopulation Prediction of Oryza Sativa using Machine Learning</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/data.css') }}">
+		<link rel="icon" href="{{ url_for('static', filename='css/img.jpg') }}" type="image/x-icon">
+		<link rel = "stylesheet" href = "E:/ProjectWork/Agri-Genomics/Flask/static/css/index.css">
+        <link rel = "stylesheet" href = "E:/ProjectWork/Agri-Genomics/Flask/static/css/data.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function downloadFile(url, filename) {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        </script>
+        <script>
+			$(document).ready(function() {
+			  	$(".clickable-row").click(function() {
+					window.open($(this).data("href"), '_blank');
+			  	});
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">	
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('makepredictions') }}">Make Predictions</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" href="{{ url_for('viewdata') }}">Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contact">Contact Details</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class = "container slide-up">
+			<h1> Files:</h1><br>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope = "col">File Name</th>
+                <th scope = "col">Description</th>
+                <th scope = "col">View</th>
+                <th scope = "col">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Plant Height</td>
+                <td>A raw CSV file containing plant height along with subpopulation name</td>
+                <td>
+                    <a href = "https://1drv.ms/u/s!AsSWIcisHiMVpjm__crxMwh8C7U9?e=7xJBja" target = "_blank">
+                        <button class = "custom-button">View</button>
+                    </a>
+                </td>
+                <td>
+                    <i class="bi-file-earmark-arrow-down-fill i position" onclick = "downloadFile('https://onedrive.live.com/download?cid=15231EACC82196C4&resid=15231EACC82196C4%214921&authkey=ALbTsJy5p7zZWQM&em=2', 'Plant Height')"></i>
+                </td>
+                </tr>
+                <tr>
+                    <td>Plant Yield</td>
+                    <td>A raw CSV file containing plant yield along with subpopulation name</td>
+                    <td>
+                        <a href = "https://1drv.ms/u/s!AsSWIcisHiMVpjjnrvWmea4H_fHn?e=M1X0Iu" target = "_blank">
+                            <button class = "custom-button">View</button>
+                        </a>
+                    </td>
+                    <td>
+                        <i class="bi-file-earmark-arrow-down-fill i position" onclick = "downloadFile('https://onedrive.live.com/download?cid=15231EACC82196C4&resid=15231EACC82196C4%214920&authkey=AH_2k9PhgNHHH1M', 'Plant Yield')"></i>
+                    </td>
+                    </tr>
+                <tr>
+                <td>Imputed Genotype Variation ID</td>
+                <td>A raw CSV file containing 9 variation IDs along with nucleotides of each variaton ID <br> and Cultivar ID</td>
+                <td>
+                    <a href = "https://1drv.ms/x/s!AsSWIcisHiMVpjrLGE2WvTdjKP0o?e=RBy8Jp" target = "_blank">
+                        <button class = "custom-button">View</button>
+                    </a>
+                </td>
+                <td>
+                    <i class="bi-file-earmark-arrow-down-fill i position" onclick = "downloadFile('https://onedrive.live.com/download?cid=15231EACC82196C4&resid=15231EACC82196C4%214922&authkey=AACTivCPRdBZRc4&em=2', 'Imputed Genotype Variation ID')"></i>
+                </td>
+                </tr>
+                <tr>
+                    <td>Phylogentic Tree</td>
+                    <td>This tree was obtained after performing multiple sequence alignment using UPGMA</td>
+                    <td>
+                        <a href = "https://1drv.ms/i/s!AsSWIcisHiMVpjzelK0udDQf1J57?e=LZ3q4v" target = "_blank">
+                            <button class = "custom-button">View</button>
+                        </a>
+                    </td>
+                    <td>
+                        <i class="bi-file-earmark-arrow-down-fill i position" onclick = "downloadFile('https://bnz06pap003files.storage.live.com/y4mavI2c_resXopcwi5zozmsB2RsJczpgTYlZSDpHCy8iLaccuozrFttbIe_QsO6AInq0JVzUDtocNgkMYQdARnFRuNk15ekMC8-rccjqz9gXS9hThh4lnXPNxNjZjRLiRuXVGOJLp4dM7w9bc9t5LjYvMV_a7fNnEoHhEAxM3e6zRevNgrG5bwxc1VjwbT6aj0?width=5634&height=5481&cropmode=none', 'Muscle Tree')"></i>      
+                    </td>
+                </tr>
+                <tr>   
+                <td>Database</td>
+                <td>The final Database which was obtained by processing the above files and was used to train <br> the machine learning model</td>
+                <td>
+                    <a href = "https://1drv.ms/u/s!AsSWIcisHiMVpjsgZSocr4RvxzU9?e=djyEel" target = "_blank">
+                        <button class = "custom-button">View</button>
+                    </a>
+                </td>
+                <td>
+                    <i class="bi-file-earmark-arrow-down-fill i position" onclick = "downloadFile('https://onedrive.live.com/download?cid=15231EACC82196C4&resid=15231EACC82196C4%214923&authkey=AJen2D_kD3tt32c', 'Database')"></i>      
+                </td>
+                </tr>
+            </tbody>
+            </table>
+		</div>
+		<div class="footer">
+			<h1 id = "contact">Contact Details</h1>
+			<br>
+			<table class = "table table-dark table-striped table-hover">
+				<tbody>
+					<tr class = "clickable-row" data-href = "mailto:umangbasuthkar51@gmail.com">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-envelope" style = "color: white;"> umangbasuthkar51@gmail.com</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://www.linkedin.com/in/umang-basuthkar-10a240235/">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-linkedin" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://github.com/UmangBasuthkar">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-github" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
