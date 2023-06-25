@@ -33,7 +33,7 @@ def get_r2score_y():
     return r2scorey
 
 def conversion(input_sequence):
-    primary = pd.read_csv("E:/ProjectWork/Agri-Genomics/Data/ML/Primary.csv")
+    primary = pd.read_csv("Primary.csv")
     primary = np.array(primary)
     primary = primary.reshape(-1)
 
