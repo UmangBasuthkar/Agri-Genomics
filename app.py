@@ -7,22 +7,22 @@ from firebase_admin import credentials, db
 
 app = Flask(__name__, static_folder='static')
 
-cred = credentials.Certificate('Flask\credentails.json')
+cred = credentials.Certificate('credentails.json')
 firebase_admin.initialize_app(cred, {'databaseURL' : 'https://agri-genomics-default-rtdb.asia-southeast1.firebasedatabase.app'})
 ref = db.reference('/Data')
 
 def get_height():
-    with open('Flask\height.pkl', 'rb') as f:
+    with open('height.pkl', 'rb') as f:
         model = pickle.load(f)
     return model
 
 def get_subpopulation():
-    with open("Flask\subpopulation.pkl", "rb") as f:
+    with open("subpopulation.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
 def get_yield():
-    with open("Flask\yield.pkl", "rb") as f:
+    with open("yield.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -39,7 +39,7 @@ def get_r2score_y():
     return r2scorey
 
 def conversion(input_sequence):
-    primary = pd.read_csv("Flask\Primary.csv")
+    primary = pd.read_csv("Primary.csv")
     primary = np.array(primary)
     primary = primary.reshape(-1)
 
