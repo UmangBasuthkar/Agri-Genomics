@@ -2,21 +2,27 @@ from flask import Flask, render_template, request, jsonify
 import pickle
 import pandas as pd
 import numpy as np
+import firebase_admin
+from firebase_admin import credentials, db
 
 app = Flask(__name__, static_folder='static')
 
+cred = credentials.Certificate('Flask\credentails.json')
+firebase_admin.initialize_app(cred, {'databaseURL' : 'https://agri-genomics-default-rtdb.asia-southeast1.firebasedatabase.app'})
+ref = db.reference('/Data')
+
 def get_height():
-    with open('height.pkl', 'rb') as f:
+    with open('Flask\height.pkl', 'rb') as f:
         model = pickle.load(f)
     return model
 
 def get_subpopulation():
-    with open("subpopulation.pkl", "rb") as f:
+    with open("Flask\subpopulation.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
 def get_yield():
-    with open("yield.pkl", "rb") as f:
+    with open("Flask\yield.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -33,7 +39,7 @@ def get_r2score_y():
     return r2scorey
 
 def conversion(input_sequence):
-    primary = pd.read_csv("Primary.csv")
+    primary = pd.read_csv("Flask\Primary.csv")
     primary = np.array(primary)
     primary = primary.reshape(-1)
 
@@ -87,6 +93,12 @@ def predict():
         predicted_yield = model_yield.predict([[final_sequence]])
         predicted_yield = predicted_yield[0]
 
+        ref.push({
+            'sequence': gene_sequence,
+            'height':round(predicted_height, 2),
+            'subpopulation':predicted_subpopulation,
+            'yield':round(predicted_yield, 2),
+        })
         return jsonify({'height': predicted_height, 'subpopulation' : predicted_subpopulation, 'sequence':gene_sequence, 'acc':accuracy, 'r2':r2score, 'yield':predicted_yield, 'r2y':r2scorey})
 
 if __name__ == '__main__':

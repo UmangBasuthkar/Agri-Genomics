@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "agri-genomics",
+  "private_key_id": "6535b7abd1c7d862c4dcd1168a5bd55ffbb668ea",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCYa53GqGutXmtD\n6n62/UlG1k5Kqvj9vPok4q49WYBkyMzp+oesuN9wHtnmpuffBGlD3anZdIFL9AcV\nfdddiZZ1OnSDn9KOxO5OiU0yKLSluQ9HKig/WEP/H5Pvm6brCJccvfARNVZkZ3bS\nYCBY26SqqsAI5/io8YUfLBVQMtqtF2I46ztBVPiBk+OhhrKh9NTFAbahrqEmcHZh\n/6qk4gYypAhngll3nsrpfdrl4Wub1lPrtG10fU2+7NUGrgpSi+NmknTcXu3DwvQe\nBcD/GZVF3sHgUILWRlopU6VMej/tKfuqFahjR9aJlI0Wed2eVEZFRZ8mX3KSKZfn\nnz1hX5ejAgMBAAECggEAMNg75Y/Pge2CHm+lT+r3cpX23QLRbC8FUpC6Gbr25FVd\nJZY9qGJOaFXaqonOQK/fM/pzFda6IKcBJif/vl/7MXIcKJotFceSPuTNMkfNLFaT\nyNB/uV0F3Vo3RE/zO9qy4mkT58/Z8a8eauiXNSKeMHsrsy7zhuBvMsAjzGGfplwb\nMEkDcYF3chiJTLrhjDaERB6BaHq0oVdAn5dhy2AglAvON3W3IRZCdp3z1jDIsfAX\nYJGIapfIQOzJvKRHi55kzr5jy3X7NKDNxUzj5dZS+h4xGdsj+LeKe8tEs+wNnQQ2\nqT3xKJEftN0fX8w2WD8yCQ3wCM6HeS4jP8NhBLRywQKBgQDRkX5NITKGWe7EN5dG\npTF0zgxxXJaCPhC5ThJT+5SEx6d+nhQj3YLrOlkenTwGrn+ljyfN+36iAKPVp5uf\n1UCHMgFrOJuxnVl40Zy7RmT1iUuy3jD5VauKrjfoBEDFRZqrEYQcFDSKrTWi8hMC\nExyA2cztYEw8GG9MCEFAIKKPcQKBgQC6ML90hMIpwXMz4F1K/V8yfaP/fHsoV3gF\nJ7j00hbTKEgoVHyu4Dqxn0rVcNbAC64vMc1vB+AjdUhnhhoXzGEgBmc4w/H17qI0\nslqG3uE6GMKbQgqAHkqpzLTnfcyu1g1OubdUf//181/D1QeugsnYMDUUR1kaWJoW\nQ99hqt12UwKBgEVrSYgpIABrF/F9bKnlHJ3Rh0Oh5OVdw9JuLxoMsyTMsgn6OTes\nL6rV2CGQ+gpIkVX5Nrk/vrHRPnQOojluvYJLKTcoOEK8mZ+w55cNeXHwOdgVS+m7\n3CgDD9fWWNI//Tz/f2CBvOnW+HZyc6NzSzTPcNeM15PskCmCboLcjJyxAoGALsHT\nMqWsROQp1BtCEnTylTFsH9rY6tacc174WbLwvHJfPJGLBjeVRcnk9xjxNSU5xuxQ\n1NM7fGwVlLnej59pvKse/OhoOQSGg4lOppQOJ5LUPD0neekhgua/f2reHgHvMZf9\n7CCA3PkTUZCL70009y+UBNWuEKmzeGfvDw3js7UCgYBkYYUv46vplFrnv6yvFTPi\nqIlLwEvct8Olby18R4t+ml2anZLU/1jSGCNX9oLXkLVy/guSAX3ZyJb+70OQNN3Q\nIZioi4DchwyeSo58q1EDYcytzyD5Nx4kvuCarXtNSPk0GNvU3mhbkZ3rTw3ES2yi\nA0PD8A0uCd1Rnjl3eTTCCA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ewxfb@agri-genomics.iam.gserviceaccount.com",
+  "client_id": "115441306557134301455",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ewxfb%40agri-genomics.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
