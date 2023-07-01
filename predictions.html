@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title>Make Predictions</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
+		<link rel="icon" href="{{ url_for('static', filename='css/img.jpg') }}" type="image/x-icon">
+		<link rel = "stylesheet" href = "E:/ProjectWork/Agri-Genomics/Flask/static/css/index.css">
+		<link rel = "stylesheet" href = "E:/ProjectWork/Agri-Genomics/Flask/static/css/prediction.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('form').submit(function(event) {
+					event.preventDefault(); // Prevent default form submission
+					var geneSequence = $('#gene_sequence').val(); // Get the gene sequence value
+					$.ajax({
+						url: '/predict',
+						type: 'POST',
+						data: {gene_sequence: geneSequence},
+						success: function(response) {
+							var predictedHeight = response.height; // Extract the predicted height
+							$('#predicted_height').text(parseFloat(predictedHeight).toFixed(2) + " cm");
+
+							var predictedSubpopulation = response.subpopulation
+							$('#predicted_subpopulation').text(predictedSubpopulation);
+
+							var Genesequence = response.sequence
+							$('#given_sequence').text(Genesequence);
+
+							var subpopulation_accuracy = response.acc
+							$('#supop_model_accuracy').text(subpopulation_accuracy + "%");
+
+							var height_r2core = response.r2
+							$("#height_model_r2score").text(height_r2core + "%");
+
+							var predictedYield = response.yield
+							$('#predicted_yield').text(parseFloat(predictedYield).toFixed(2));
+
+							var yield_r2 = response.r2y
+							$('#yield_acc').text(yield_r2 + "%");
+						}
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function() {
+				$('#toggleButton').click(function() {
+					$('#myDiv').fadeOut(function(){
+						$('#myDiv').fadeIn();
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function() {
+			  	$(".clickable-row").click(function() {
+					window.open($(this).data("href"), '_blank');
+			  	});
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">	
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('makepredictions') }}">Make Predictions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('viewdata') }}">Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contact">Contact Details</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div style = "display: flex; flex-direction: row; margin-left: -5%;">
+			<div class = "container1 slide-up">
+				<div>
+					<h1 style = "text-align: justify;">Predictions</h1>
+					<br>
+					<p>
+						AgriGen offers a predictive solution enabling users to determine the height of Oryza Sativa plants and identify
+						their specific variety using a concise 9-digit DNA sequence associated with the plant.
+					</p>
+					<br>
+					<form>
+						<h4 style = "margin-left: 5%;">Enter Gene Sequence:</h4>
+						<input type="text" class = "prediction" id = "gene_sequence" name="gene_sequence" required>
+						<br><br>
+						<button class = "custom-button" id = "toggleButton">Submit</button>
+					</form>
+				</div>
+			</div>
+			<div class = "container2 hidden" id = "myDiv">
+				<form id = "contactForm">
+					<div style = "margin-top: 10%;">
+						<h2>Prediction Result:</h2>
+						<br>
+						
+						<p class = "line">Predicted Plant Height: </p>
+						<p class = "line" id = "predicted_height"></p>
+						<br>
+						<p class = "line">Height prediction accuracy: </p>
+						<p class = "line" id = "height_model_r2score"></p>
+						<br>
+						<br>
+
+						<p class = "line">Predicted Plant Subpopulation: </p>
+						<p class = "line" id = "predicted_subpopulation"></p>
+						<br>
+						<p class = "line">Subpopulation prediction accuracy: </p>
+						<p class = "line" id = "supop_model_accuracy"></p>
+						<br>
+						<br>
+						
+						<p class = "line">Predicted Plant Yield: </p>
+						<p class = "line" id = "predicted_yield"></p>
+						<br>
+						<p class = "line">Yield prediction accuracy: </p>
+						<p class = "line" id = "yield_acc"></p>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class = "container3">
+			<h1 style = "text-align: center;">Past Predictions</h1>
+			<br>
+			<table class = "table table-hover" style = "color: black;" id = "myTable">
+				<thead>
+					<tr>
+						<th>Gene Sequence</th>
+						<th>Predicted Height</th>
+						<th>Predicted Subpopulation</th>
+						<th>Predicted Yield</th>
+					</tr>
+				</thead>
+				<tbody id = "dataList"></tbody>
+			</table>
+		</div>
+		<div class="footer">
+			<h1 id = "contact">Contact Details</h1>
+			<br>
+			<table class = "table table-dark table-striped table-hover">
+				<tbody>
+					<tr class = "clickable-row" data-href = "mailto:umangbasuthkar51@gmail.com">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-envelope" style = "color: white;"> umangbasuthkar51@gmail.com</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://www.linkedin.com/in/umang-basuthkar-10a240235/">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-linkedin" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+					<tr class = "clickable-row" data-href = "https://github.com/UmangBasuthkar">
+						<td style = "cursor: pointer;">
+							<i style = "font-size: 1.4em;" class="bi bi-github" style = "color: white;"> Umang Basuthkar</i>&nbsp;&nbsp;<i class="bi bi-box-arrow-up-right"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script type = "module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+			import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+			import { getDatabase, ref, push, set, onValue, limitToLast, query } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+			const firebaseConfig = {
+				apiKey: "AIzaSyBJjhw3GjSmqdpXcbJYXcV5Pol-iF6Tztw",
+				authDomain: "agri-genomics.firebaseapp.com",
+				databaseURL: "https://agri-genomics-default-rtdb.asia-southeast1.firebasedatabase.app",
+				projectId: "agri-genomics",
+				storageBucket: "agri-genomics.appspot.com",
+				messagingSenderId: "337687872211",
+				appId: "1:337687872211:web:58f692352efe60b47b4a26",
+				measurementId: "G-S499SXS58Q"
+			};
+			const app = initializeApp(firebaseConfig);
+			const analytics = getAnalytics(app);
+			const database = getDatabase(app);
+			var messagesRef = ref(database, '/Data');
+			function displayData(snapshot) {
+				const dataList = document.getElementById('dataList');
+				const myTable = document.getElementById('myTable');
+				snapshot.forEach((childSnapshot) => {
+					const childData = childSnapshot.val();
+					const childKey = childSnapshot.key;
+					const existingRow = myTable.querySelector(`tr[data-key="${childKey}"]`);
+					if (existingRow) {
+						return;
+					}
+					const tableRow = document.createElement('tr');
+					tableRow.setAttribute('data-key', childKey);
+
+					const tableDataSequence = document.createElement('td');
+					tableDataSequence.innerHTML = `${childData.sequence}`;
+					tableRow.appendChild(tableDataSequence);
+					
+					const tableDataHeight = document.createElement('td');
+					tableDataHeight.innerHTML = `${childData.height}`;
+					tableRow.appendChild(tableDataHeight);
+					
+					const tableDataSubpopulation = document.createElement('td');
+					tableDataSubpopulation.innerHTML = `${childData.subpopulation}`;
+					tableRow.appendChild(tableDataSubpopulation);				
+
+					const tableDataYield = document.createElement('td');
+					tableDataYield.innerHTML = `${childData.yield}`;
+					tableRow.appendChild(tableDataYield);
+					
+					tableDataSequence.style.paddingLeft = '10px';
+					tableDataHeight.style.paddingLeft = '40px';
+					tableDataSubpopulation.style.paddingLeft = '40px';
+					tableDataYield.style.paddingLeft = '40px';
+
+					myTable.appendChild(tableRow);
+				});
+			}
+			onValue(messagesRef, displayData);
+		</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</body>
+</html>
