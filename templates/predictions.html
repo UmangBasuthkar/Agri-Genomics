@@ -141,7 +141,7 @@
 		<div class = "container3">
 			<h1 style = "text-align: center;">Past Predictions</h1>
 			<br>
-			<table class = "table" id = "myTable">
+			<table class = "table table-hover" style = "color: black;" id = "myTable">
 				<thead>
 					<tr>
 						<th>Gene Sequence</th>
@@ -217,12 +217,24 @@
 					
 					const tableDataSubpopulation = document.createElement('td');
 					tableDataSubpopulation.innerHTML = `${childData.subpopulation}`;
-					tableRow.appendChild(tableDataSubpopulation);
+					tableRow.appendChild(tableDataSubpopulation);				
 
 					const tableDataYield = document.createElement('td');
 					tableDataYield.innerHTML = `${childData.yield}`;
 					tableRow.appendChild(tableDataYield);
 					
+					tableDataSequence.style.paddingLeft = '10px';
+					tableDataHeight.style.paddingLeft = '40px';
+					tableDataSubpopulation.style.paddingLeft = '40px';
+					tableDataYield.style.paddingLeft = '40px';
+
+					tableDataSequence.style.paddingBottom = '10px';
+					tableDataHeight.style.paddingBottom = '10px';
+					tableDataSubpopulation.style.paddingBottom = '10px';
+					tableDataYield.style.paddingBottom = '10px';
+
+					tableDataSequence.style.paddingTop = '20px';
+
 					myTable.appendChild(tableRow);
 				});
 			}
