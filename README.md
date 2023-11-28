@@ -7,7 +7,7 @@ for the precise estimation of Oryza Sativa's height, subpopulation attributes, a
 The height of Oryza Sativa, a fundamental trait influencing its adaptability and agronomic management, can now be accurately predicted through sophisticated Machine Learning models. By analyzing genetic markers and
 leveraging predictive algorithms, researchers can anticipate the plant's height with a high degree of accuracy, enabling informed decisions in breeding programs and cultivation practices.
 
-#Usage
+# Usage
 1. View the website on https://agrigenetica.onrender.com/
 2. Navigate to the "Make Predictions" tab.
 3. Input a gene sequence consisting of nine nucleotides in length.
