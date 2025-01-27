@@ -4,25 +4,28 @@ import pandas as pd
 import numpy as np
 import firebase_admin
 from firebase_admin import credentials, db
+from data import get_json_structure
 
 app = Flask(__name__, static_folder='static')
 
-cred = credentials.Certificate('credentails.json')
+get_json_structure()
+
+cred = credentials.Certificate('./credentials.json')
 firebase_admin.initialize_app(cred, {'databaseURL' : 'https://agri-genomics-default-rtdb.asia-southeast1.firebasedatabase.app'})
 ref = db.reference('/Data')
 
 def get_height():
-    with open('height.pkl', 'rb') as f:
+    with open('./height.pkl', 'rb') as f:
         model = pickle.load(f)
     return model
 
 def get_subpopulation():
-    with open("subpopulation.pkl", "rb") as f:
+    with open("./subpopulation.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
 def get_yield():
-    with open("yield.pkl", "rb") as f:
+    with open("./yield.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
@@ -39,7 +42,7 @@ def get_r2score_y():
     return r2scorey
 
 def conversion(input_sequence):
-    primary = pd.read_csv("Primary.csv")
+    primary = pd.read_csv("./Primary.csv")
     primary = np.array(primary)
     primary = primary.reshape(-1)
 
@@ -81,7 +84,7 @@ def viewdata():
 def predict():
     if request.method == 'POST':
         gene_sequence = request.form['gene_sequence']
-        final_sequence = conversion(gene_sequence)
+        final_sequence = conversion(gene_sequence.upper())
 
 
         predicted_height = model_height.predict([[final_sequence]])
