@@ -1,4 +1,5 @@
 numpy
+dotenv
 pandas
 scikit-learn
 flask
